@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "5a2d7883-7683-4e2d-acb5-cbc6c5f551e6",
+		"name": "Blip - Active Messages",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19884597"
+	},
+	"item": [
+		{
+			"name": "Get WhatsApp identifier",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"to\": \"postmaster@wa.gw.msging.net\",\r\n    \"method\": \"get\",\r\n    \"uri\": \"lime://wa.gw.msging.net/accounts/+551199999999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/commands",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move user to another state",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"to\": \"postmaster@msging.net\",\r\n    \"method\": \"set\",\r\n    \"uri\": \"/contexts/551199999999@wa.gw.msging.net/stateid@<flow_id>\", // @<flow_id> - disponível nas configs do bot\r\n    \"type\": \"text/plain\",\r\n    \"resource\": \"<state_id>\" // id do bloco destino\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/commands",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move user to another bot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"method\": \"get\",\r\n    \"uri\": \"/contexts/551199999999@wa.gw.msging.net/master-state\",\r\n    \"resource\": \"<id_do_bot_destino>\",\r\n    \"type\": \"text/plain\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/commands",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}},\r\n    \"method\": \"set\",\r\n    \"uri\": \"/contacts\",\r\n    \"type\": \"application/vnd.lime.contact+json\",\r\n    \"source\": \"WhatsApp\",\r\n    \"resource\": {\r\n        \"identity\": \"551199999999@wa.gw.msging.net\",\r\n        \"name\": \"John Doe\",\r\n        \"phoneNumber\": \"(11) 9999-9999\",\r\n        \"taxDocument\": \"123.456.789-00\",\r\n        \"extras\": {}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/commands",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{$guid}},\r\n    \"method\": \"merge\",\r\n    \"uri\": \"/contacts\",\r\n    \"type\": \"application/vnd.lime.contact+json\",\r\n    \"source\": \"WhatsApp\",\r\n    \"resource\": {\r\n        \"identity\": \"551199999999@wa.gw.msging.net\",\r\n        \"name\": \"Jane Doe\",\r\n        \"phoneNumber\": \"(11) 9999-9999\",\r\n        \"taxDocument\": \"123.456.789-00\",\r\n        \"extras\": {}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/commands",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"commands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send a message (no variables)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"to\": \"551199999999@wa.gw.msging.net\",\r\n    \"type\": \"application/json\",\r\n    \"content\": {\r\n        \"type\":\"template\",\r\n        \"template\":{\r\n            \"namespace\":\"your_namespace_here\",\r\n            \"name\":\"name_of_the_approved_message_template\",\r\n            \"language\":{\r\n                \"code\":\"pt_BR\",\r\n                \"policy\":\"deterministic\"\r\n            }\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/messages",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send a message (two variables)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"to\": \"551199999999@wa.gw.msging.net\",\r\n    \"type\": \"application/json\",\r\n    \"content\": {\r\n        \"type\": \"template\",\r\n        \"template\": {\r\n            \"namespace\": \"your_namespace_here\",\r\n            \"name\": \"name_of_the_approved_message_template\",\r\n            \"language\": {\r\n                \"code\": \"pt_BR\",\r\n                \"policy\": \"deterministic\"\r\n            },\r\n            \"components\": [\r\n                {\r\n                    \"type\": \"body\",\r\n                    \"parameters\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"First variable\"\r\n                        },\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"Second variable\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/messages",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send a message (variable and CTA button)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"to\": \"551199999999@wa.gw.msging.net\",\r\n    \"type\": \"application/json\",\r\n    \"content\": {\r\n        \"type\": \"template\",\r\n        \"template\": {\r\n            \"namespace\": \"your_namespace_here\",\r\n            \"name\": \"name_of_the_approved_message_template\",\r\n            \"language\": {\r\n                \"code\": \"pt_BR\",\r\n                \"policy\": \"deterministic\"\r\n            },\r\n            \"components\": [\r\n                {\r\n                    \"type\": \"body\",\r\n                    \"parameters\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"First variable\"\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"type\": \"button\",\r\n                    \"sub_type\": \"url\",\r\n                    \"parameters\": [\r\n                        {\r\n                            \"type\": \"text\",\r\n                            \"text\": \"privacidade_protecao_dados_pessoais/pagina-inicial\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://your_workspace_here.http.msging.net/messages",
+					"protocol": "https",
+					"host": [
+						"your_workspace_here",
+						"http",
+						"msging",
+						"net"
+					],
+					"path": [
+						"messages"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "your_key_here",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
